@@ -1,4 +1,4 @@
-package com.invertase.rnfirebasestarter;
+package com.capstone.capstonemobileapp;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
