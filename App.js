@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Platform, Image, Text, View, ScrollView } from 'react-native';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+import firebase from 'react-native-firebase';
+
 
 // import the different screens
 import Loading from './Loading'
@@ -12,11 +14,14 @@ import Main from './Main'
 
 //import firebase from 'react-native-firebase';
 
-const TabNavigator = createBottomTabNavigator({
+const SwitchNavigator = createSwitchNavigator({
   Loading: Loading,
   SignUp: SignUp,
   Login: Login,
   Main: Main
+},
+{
+  initialRouteName: 'Loading'
 });
 
 class App extends React.Component {
@@ -82,4 +87,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default createAppContainer(TabNavigator);
+export default createAppContainer(SwitchNavigator);
