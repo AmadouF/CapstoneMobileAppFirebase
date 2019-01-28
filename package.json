@@ -27,6 +27,8 @@
     "react-native": "0.58.0-rc.2",
     "react-native-firebase": "^5.2.0",
     "react-native-form": "^2.1.3",
-    "react-navigation": "^3.0.9"
+    "react-native-switch-toggle": "^1.0.7",
+    "react-navigation": "^3.0.9",
+    "toggle-switch-react-native": "^2.0.2"
   }
 }

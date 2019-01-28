@@ -139,8 +139,7 @@ export default class SignUp extends React.Component {
 
           <Button
             title="Sign Up"
-            onPress={this.handleSignUp}
-            /*onPress={() => {
+            onPress={() => {
               if (this.state.firstName.trim() === "") {
                 this.setState(() => ({
                   firstNameError: "First name required."
@@ -166,11 +165,11 @@ export default class SignUp extends React.Component {
                   headsetSerialNumberError: "Headset Serial Number required."
                 }));
               } else {
-                this.handleSignUp;
+                this.handleSignUp();
                 //  this.props.navigation.navigate("Main");
                 this.setState(() => ({ nameError: null }));
               }
-            }}*/
+            }}
           />
         </Form>
       </View>
