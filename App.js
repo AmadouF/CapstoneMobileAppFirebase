@@ -16,6 +16,7 @@ import SignUp from "./SignUp";
 import Login from "./Login";
 import Main from "./Main";
 import LaunchScreen from "./LaunchScreen";
+import Profile from "./Profile";
 
 // create our app's navigation stack
 
@@ -27,7 +28,8 @@ const SwitchNavigator = createSwitchNavigator(
     Loading: Loading,
     SignUp: SignUp,
     Login: Login,
-    Main: Main
+    Main: Main,
+    Profile: Profile
   },
   {
     initialRouteName: "LaunchScreen"

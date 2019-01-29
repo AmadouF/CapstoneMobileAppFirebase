@@ -142,7 +142,13 @@ export default class Main extends React.Component {
           onToggle={this.onPress6}
         />
         <Text />
-        <Button title="Sign Out" onPress={this.handleSignOut} />
+        <Text />
+        <Button
+          title="Go to Profile"
+          onPress={() => {
+            this.props.navigation.navigate("Profile");
+          }}
+        />
       </View>
     );
   }
