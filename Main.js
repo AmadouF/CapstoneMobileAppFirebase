@@ -8,11 +8,13 @@ import ToggleSwitch from "toggle-switch-react-native";
 export default class Main extends React.Component {
   state = {
     currentUser: null,
+
     switchOn1: false,
     switchOn2: false,
     switchOn3: false,
     switchOn4: false,
-    switchOn5: false
+    switchOn5: false,
+    switchOn6: false
   };
 
   componentDidMount() {
@@ -45,22 +47,26 @@ export default class Main extends React.Component {
   onPress5 = () => {
     this.setState({ switchOn5: !this.state.switchOn5 });
   };
-
+  onPress6 = () => {
+    this.setState({ switchOn6: !this.state.switchOn6 });
+  };
   render() {
     const { currentUser } = this.state;
 
     return (
       <View style={toggleSyles.container}>
-        <Text>Hi {currentUser && currentUser.email}!</Text>
+        <Text style={{ position: "absolute", left: 10, top: 80 }}>
+          Hi {currentUser && currentUser.email}!
+        </Text>
         <ToggleSwitch
           isOn={this.state.switchOn1}
-          onColor="green"
-          offColor="red"
-          label="Distance Covered"
+          onColor="blue"
+          offColor="gray"
+          label="Bluetooth"
           labelStyle={{
             color: "black",
             fontWeight: "900",
-            marginHorizontal: 20
+            marginHorizontal: 42
           }}
           size="large"
           onToggle={this.onPress1}
@@ -70,11 +76,11 @@ export default class Main extends React.Component {
           isOn={this.state.switchOn2}
           onColor="green"
           offColor="red"
-          label="Speed"
+          label="Distance Covered"
           labelStyle={{
             color: "black",
             fontWeight: "900",
-            marginHorizontal: 55
+            marginHorizontal: 20
           }}
           size="large"
           onToggle={this.onPress2}
@@ -84,11 +90,11 @@ export default class Main extends React.Component {
           isOn={this.state.switchOn3}
           onColor="green"
           offColor="red"
-          label="Altitude"
+          label="Speed"
           labelStyle={{
             color: "black",
             fontWeight: "900",
-            marginHorizontal: 51
+            marginHorizontal: 55
           }}
           size="large"
           onToggle={this.onPress3}
@@ -98,11 +104,11 @@ export default class Main extends React.Component {
           isOn={this.state.switchOn4}
           onColor="green"
           offColor="red"
-          label="Caloried Burned"
+          label="Altitude"
           labelStyle={{
             color: "black",
             fontWeight: "900",
-            marginHorizontal: 27
+            marginHorizontal: 51
           }}
           size="large"
           onToggle={this.onPress4}
@@ -112,6 +118,20 @@ export default class Main extends React.Component {
           isOn={this.state.switchOn5}
           onColor="green"
           offColor="red"
+          label="Caloried Burned"
+          labelStyle={{
+            color: "black",
+            fontWeight: "900",
+            marginHorizontal: 27
+          }}
+          size="large"
+          onToggle={this.onPress5}
+        />
+        <Text />
+        <ToggleSwitch
+          isOn={this.state.switchOn6}
+          onColor="green"
+          offColor="red"
           label="Time"
           labelStyle={{
             color: "black",
@@ -119,8 +139,9 @@ export default class Main extends React.Component {
             marginHorizontal: 62
           }}
           size="large"
-          onToggle={this.onPress5}
+          onToggle={this.onPress6}
         />
+        <Text />
         <Button title="Sign Out" onPress={this.handleSignOut} />
       </View>
     );
