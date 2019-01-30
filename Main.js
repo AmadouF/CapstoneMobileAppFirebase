@@ -23,15 +23,6 @@ export default class Main extends React.Component {
     this.setState({ currentUser });
   }
 
-  handleSignOut = async () => {
-    try {
-      await firebase.auth().signOut();
-      this.props.navigation.navigate("LaunchScreen");
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   onPress1 = () => {
     this.setState({ switchOn1: !this.state.switchOn1 });
   };
@@ -56,7 +47,7 @@ export default class Main extends React.Component {
     return (
       <View style={toggleSyles.container}>
         <Text style={{ position: "absolute", left: 10, top: 80 }}>
-          Hi {currentUser && currentUser.email}!
+          Hi {currentUser && currentUser.firstName}!
         </Text>
         <ToggleSwitch
           isOn={this.state.switchOn1}

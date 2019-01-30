@@ -15,6 +15,7 @@ import styles from "./Styles/LaunchScreenStyles";
 
 export default class SignUp extends React.Component {
   state = {
+    currentUser: null,
     email: "",
     password: "",
     firstName: "",
@@ -25,12 +26,44 @@ export default class SignUp extends React.Component {
     errorMessage: null
   };
 
+  componentDidMount() {
+    const { currentUser } = firebase.auth();
+
+    this.setState({ currentUser });
+  }
+
+  writeUserData(the_uid) {
+    console.warn("Writting data ");
+    var today = new Date();
+    firebase
+      .database()
+      .ref("users/" + firebase.auth.the_uid + "/")
+      .set({
+        firstName: this.state.firstName,
+        age: this.state.age,
+        registered: today
+      });
+  }
   handleSignUp = () => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => this.props.navigation.navigate("Main"))
+      .then(authData => {
+        this.writeUserData(authData.the_uid);
+        this.props.navigation.navigate("Main");
+      })
       .catch(error => this.setState({ errorMessage: error.message }));
+
+    if (this.state.errorMessage === null) {
+      firebase
+        .database()
+        .ref("users/")
+        .set({
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          age: this.state.age
+        });
+    }
   };
   /*
   pushToFirebase() {
