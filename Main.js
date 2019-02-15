@@ -23,23 +23,62 @@ export default class Main extends React.Component {
     this.setState({ currentUser });
   }
 
+  writeUserData(newState) {
+    // console.log("2" + this.state)
+    firebase
+      .database()
+      .ref("headset/123456")
+      .set({
+        CaloriesBurned: newState.switchOn2,
+        DistanceCovered: newState.switchOn3,
+        Inclination: newState.switchOn4,
+        Speed: newState.switchOn5,
+        Time: newState.switchOn6
+
+      })
+      .then(data => {
+        //success callback
+        console.log("data ", data);
+      })
+      .catch(error => {
+        //error callback
+        console.log("error ", error);
+      });
+  }
   onPress1 = () => {
     this.setState({ switchOn1: !this.state.switchOn1 });
+
   };
   onPress2 = () => {
-    this.setState({ switchOn2: !this.state.switchOn2 });
+    newState = this.state
+    newState.switchOn2 = !newState.switchOn2
+    console.log(newState.switchOn2)
+    this.setState({ switchOn2: newState.switchOn2 }, this.writeUserData(newState));
+
   };
   onPress3 = () => {
-    this.setState({ switchOn3: !this.state.switchOn3 });
+    newState = this.state
+    newState.switchOn3 = !newState.switchOn3
+    console.log(newState.switchOn3)
+    this.setState({ switchOn3: newState.switchOn3 }, this.writeUserData(newState));
   };
   onPress4 = () => {
-    this.setState({ switchOn4: !this.state.switchOn4 });
+    newState = this.state
+    newState.switchOn4 = !newState.switchOn4
+    console.log(newState.switchOn4)
+    this.setState({ switchOn4: newState.switchOn4 }, this.writeUserData(newState));
   };
   onPress5 = () => {
-    this.setState({ switchOn5: !this.state.switchOn5 });
+    newState = this.state
+    newState.switchOn5 = !newState.switchOn5
+    console.log(newState.switchOn5)
+    this.setState({ switchOn5: newState.switchOn5 }, this.writeUserData(newState));
   };
   onPress6 = () => {
-    this.setState({ switchOn6: !this.state.switchOn6 });
+    newState = this.state
+    newState.switchOn6 = !newState.switchOn6
+    console.log(newState.switchOn6)
+    this.setState({ switchOn6: newState.switchOn6 }, this.writeUserData(newState));
   };
   render() {
     const { currentUser } = this.state;
@@ -67,11 +106,11 @@ export default class Main extends React.Component {
           isOn={this.state.switchOn2}
           onColor="green"
           offColor="red"
-          label="Distance Covered"
+          label="Calories Burned"
           labelStyle={{
             color: "black",
             fontWeight: "900",
-            marginHorizontal: 20
+            marginHorizontal: 25
           }}
           size="large"
           onToggle={this.onPress2}
@@ -81,11 +120,11 @@ export default class Main extends React.Component {
           isOn={this.state.switchOn3}
           onColor="green"
           offColor="red"
-          label="Speed"
+          label="Distance Covered"
           labelStyle={{
             color: "black",
             fontWeight: "900",
-            marginHorizontal: 55
+            marginHorizontal: 20
           }}
           size="large"
           onToggle={this.onPress3}
@@ -95,11 +134,11 @@ export default class Main extends React.Component {
           isOn={this.state.switchOn4}
           onColor="green"
           offColor="red"
-          label="Altitude"
+          label="Inclination"
           labelStyle={{
             color: "black",
             fontWeight: "900",
-            marginHorizontal: 51
+            marginHorizontal: 45
           }}
           size="large"
           onToggle={this.onPress4}
@@ -109,11 +148,12 @@ export default class Main extends React.Component {
           isOn={this.state.switchOn5}
           onColor="green"
           offColor="red"
-          label="Caloried Burned"
+          label="Speed"
           labelStyle={{
             color: "black",
             fontWeight: "900",
-            marginHorizontal: 27
+            marginHorizontal: 57
+
           }}
           size="large"
           onToggle={this.onPress5}
@@ -135,7 +175,7 @@ export default class Main extends React.Component {
         <Text />
         <Text />
         <Button
-          title="Go to Profile"
+          title="Go to profile"
           onPress={() => {
             this.props.navigation.navigate("Profile");
           }}

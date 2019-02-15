@@ -70,6 +70,7 @@ export default class SignUp extends React.Component {
         <Form ref="soulForm" style={styles.form}>
           <TextInput
             style={styles.textInput}
+            label='First Name'
             selectionColor="#2737C7"
             underlineColorAndroid={"#2737C7"}
             placeholder="First Name"

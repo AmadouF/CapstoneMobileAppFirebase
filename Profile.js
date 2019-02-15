@@ -52,7 +52,9 @@ export default class Profile extends React.Component {
             </Text>
             <Text style={styles.description}>I will diplay the info here</Text>
 
-            <TouchableOpacity style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.buttonContainer}
+              onPress={() => this.props.navigation.navigate("UserInformation")}
+            >
               <Text style={{ color: "white" }}>Edit Information</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonContainer}>
