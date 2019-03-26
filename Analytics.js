@@ -8,23 +8,46 @@ import {
 } from 'react-native-chart-kit'
 
 
-import { StyleSheet, Platform, Image, Text, View, Button, Dimensions } from "react-native";
 
+//import { BleManager } from 'react-native-ble-plx';
+
+import {
+    Platform,
+    StyleSheet,
+    Text,
+    View,
+    Alert,
+    TouchableOpacity,
+    Image,
+    Button,
+    Dimensions
+} from "react-native";
 
 export default class Analytics extends React.Component {
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     render() {
+
+
         return (
 
-            <View style={styles.container}>
+            <View  >
 
+                <Text />
 
-                <LineChart
-                    data={data}
-                    width={screenWidth}
-                    height={220}
-                    chartConfig={chartConfig}
-                />
             </View >
 
         );
@@ -53,5 +76,10 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#F5FCFF"
+    },
+    welcome: {
+        fontSize: 20,
+        textAlign: "center",
+        margin: 10
     }
 });
