@@ -19,7 +19,7 @@ import LaunchScreen from "./LaunchScreen";
 import Profile from "./Profile";
 import Analytics from "./Analytics"
 import UserInformation from "./UserInformation"
-import AnimatedMarkers from "./AnimatedMarkers"
+import Location from "./Location"
 
 // create our app's navigation stack
 
@@ -35,7 +35,7 @@ const SwitchNavigator = createSwitchNavigator(
     Profile: Profile,
     Analytics: Analytics,
     UserInformation: UserInformation,
-    AnimatedMarkers: AnimatedMarkers
+    Location: Location
   },
   {
     initialRouteName: "LaunchScreen"
