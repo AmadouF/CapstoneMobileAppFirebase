@@ -5,10 +5,31 @@ import {
     Text,
     View,
     Alert,
-    TouchableOpacity
+    TouchableOpacity,
+    AsyncStorage,
+    Button
 } from "react-native";
 import haversine from "haversine";
+import BackgroundTask from 'react-native-background-task'
 
+
+BackgroundTask.define(async () => {
+    console.log('Hello from a background task')
+
+    /*  this.setState = ({
+          Test: this.state.Test + 1
+      });
+      */
+    const response = await fetch('http://feeds.bbci.co.uk/news/rss.xml')
+    const text = await response.text()
+
+    // Data persisted to AsyncStorage can later be accessed by the foreground app
+    await AsyncStorage.setItem('@MyApp:key', text)
+
+    // Remember to call finish()
+
+    BackgroundTask.finish()
+})
 export default class Location extends Component {
     state = {
         location: null,
@@ -16,7 +37,8 @@ export default class Location extends Component {
         longitude: null,
         routeCoordinates: [],
         distanceTravelled: 0,
-        prevLatLng: {}
+        prevLatLng: {},
+        Test: 0
     };
 
 
@@ -36,6 +58,11 @@ export default class Location extends Component {
     };
 
     componentDidMount() {
+        BackgroundTask.schedule({
+            period: 1,
+        })
+        this.checkStatus()
+
         this.watchID = navigator.geolocation.watchPosition(
             position => {
                 const { coordinate, routeCoordinates, distanceTravelled } = this.state;
@@ -57,11 +84,18 @@ export default class Location extends Component {
             },
             error => console.log(error),
             { enableHighAccuracy: true, timeout: 20000 }
+
         );
+    }
+
+    async checkStatus() {
+        const status = await BackgroundTask.statusAsync()
+        console.log(status.available)
     }
 
     calcDistance = newLatLng => {
         const { prevLatLng } = this.state;
+        console.log("Here")
         return haversine(prevLatLng, newLatLng) || 0;
     };
 
@@ -79,6 +113,14 @@ export default class Location extends Component {
                         {parseFloat(this.state.distanceTravelled).toFixed(2)} km
     </Text>
                 </TouchableOpacity>
+
+                <Button
+                    title="Read results from AsyncStorage"
+                    onPress={async () => {
+                        const result = await AsyncStorage.getItem('@MyApp:key')
+                        console.log(result)
+                    }}
+                />
             </View>
         );
     }

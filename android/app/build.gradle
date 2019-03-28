@@ -154,6 +154,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-background-timer')
+    implementation project(':react-native-background-task')
     implementation project(':react-native-svg')
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"

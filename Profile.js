@@ -67,7 +67,7 @@ export default class Profile extends React.Component {
               <Text style={{ color: "white" }}>Signout</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonContainer}
-              onPress={() => this.props.navigation.navigate("Location")}
+              onPress={() => this.props.navigation.navigate("Background")}
             >
               <Text style={{ color: "white" }}>Location</Text>
             </TouchableOpacity>
