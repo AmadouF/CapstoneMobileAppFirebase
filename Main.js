@@ -1,11 +1,12 @@
 import React from "react";
-import { StyleSheet, Platform, Image, Text, View, Button, TouchableOpacity } from "react-native";
+import { StyleSheet, Platform, Image, Text, View, Button, TouchableOpacity, ScrollView } from "react-native";
 import firebase from "react-native-firebase";
 import styles from "./Styles/LaunchScreenStyles";
 import LaunchScreen from "./LaunchScreen";
 import ToggleSwitch from "toggle-switch-react-native";
 import BackgroundTimer from 'react-native-background-timer';
 import haversine from "haversine";
+import { Icon } from 'react-native-elements'
 
 
 // Cancel the timer when you are done with it
@@ -297,14 +298,16 @@ export default class Main extends React.Component {
           size="large"
           onToggle={this.onPress6}
         />
+
         <Text />
-        <Text />
-        <Button
-          title="Go to profile"
+        <Icon
+          raised
+          name='user'
+          type='feather'
+          color='#f50'
           onPress={() => {
             this.props.navigation.navigate("Profile");
-          }}
-        />
+          }} />
 
         <TouchableOpacity style={[styles.bubble, styles.button]}>
           <Text style={styles.bottomBarContent}>

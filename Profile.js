@@ -7,7 +7,8 @@ import {
   View,
   Button,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from "react-native";
 import firebase from "react-native-firebase";
 import LaunchScreen from "./LaunchScreen";
@@ -20,6 +21,7 @@ import {
   ContributionGraph
 } from "react-native-chart-kit";
 //import styles from "./Styles/LaunchScreenStyles";
+import { Icon } from 'react-native-elements'
 
 export default class Profile extends React.Component {
   state = {};
@@ -35,7 +37,16 @@ export default class Profile extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
+        <Icon
+          raised
+          name='home'
+          type='feather'
+          color='#f50'
+          onPress={() => {
+            this.props.navigation.navigate("Main");
+          }} />
+
         <View style={styles.header} />
         <Image
           style={styles.avatar}
@@ -57,8 +68,15 @@ export default class Profile extends React.Component {
             >
               <Text style={{ color: "white" }}>Edit Information</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.buttonContainer}
+              onPress={() => this.props.navigation.navigate("Analytics")}   >
               <Text style={{ color: "white" }}>Show Analytics</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.buttonContainer}
+              onPress={() => this.props.navigation.navigate("Background")}
+            >
+              <Text style={{ color: "white" }}>Location</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.buttonContainer}
@@ -66,14 +84,9 @@ export default class Profile extends React.Component {
             >
               <Text style={{ color: "white" }}>Signout</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.buttonContainer}
-              onPress={() => this.props.navigation.navigate("Background")}
-            >
-              <Text style={{ color: "white" }}>Location</Text>
-            </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

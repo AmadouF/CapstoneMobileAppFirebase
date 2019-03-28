@@ -6,6 +6,9 @@ import {
     ProgressChart,
     ContributionGraph
 } from 'react-native-chart-kit'
+import { Icon } from 'react-native-elements'
+
+
 
 
 
@@ -20,7 +23,8 @@ import {
     TouchableOpacity,
     Image,
     Button,
-    Dimensions
+    Dimensions,
+    ScrollView
 } from "react-native";
 
 export default class Analytics extends React.Component {
@@ -44,11 +48,18 @@ export default class Analytics extends React.Component {
 
         return (
 
-            <View  >
+            <ScrollView  >
 
-                <Text />
+                <Icon
+                    raised
+                    name='home'
+                    type='feather'
+                    color='#f50'
+                    onPress={() => {
+                        this.props.navigation.navigate("Main");
+                    }} />
 
-            </View >
+            </ScrollView >
 
         );
 
