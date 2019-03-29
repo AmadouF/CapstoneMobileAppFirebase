@@ -46,6 +46,14 @@ export default class Profile extends React.Component {
           onPress={() => {
             this.props.navigation.navigate("Main");
           }} />
+        <Icon
+          raised
+          name='help-circle'
+          type='feather'
+          color='#f50'
+          onPress={() => {
+            this.props.navigation.navigate("Help");
+          }} />
 
         <View style={styles.header} />
         <Image
@@ -73,11 +81,7 @@ export default class Profile extends React.Component {
               <Text style={{ color: "white" }}>Show Analytics</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.buttonContainer}
-              onPress={() => this.props.navigation.navigate("Background")}
-            >
-              <Text style={{ color: "white" }}>Location</Text>
-            </TouchableOpacity>
+
             <TouchableOpacity
               style={styles.buttonContainer}
               onPress={this.handleSignOut}

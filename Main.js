@@ -38,6 +38,7 @@ export default class Main extends React.Component {
     measurementCount: 0,
     SpeedValue: 0,
     distanceTravelledCalculate: 0,
+    InclinationCalculated: 0
 
   };
 
@@ -62,6 +63,7 @@ export default class Main extends React.Component {
         Inclination: newState.switchOn4,
         Speed: newState.switchOn5,
         Time: newState.switchOn6,
+        InclinationCalculated: this.state.InclinationCalculated
 
       })
       .then(data => {
@@ -81,13 +83,14 @@ export default class Main extends React.Component {
       .database()
       .ref("headset/123456")
       .set({
+        distanceTravelled: this.state.distanceTravelled,
+        SpeedValue: this.state.SpeedValue,
         CaloriesBurned: newState.switchOn2,
         DistanceCovered: newState.switchOn3,
         Inclination: newState.switchOn4,
         Speed: newState.switchOn5,
         Time: newState.switchOn6,
-
-
+        InclinationCalculated: this.state.InclinationCalculated
 
       })
       .then(data => {
@@ -211,6 +214,8 @@ export default class Main extends React.Component {
 
     return (
       <View style={toggleSyles.container}>
+
+
         <Text style={{ position: "absolute", left: 10, top: 80 }}>
           Hi {currentUser && currentUser.firstName}!
         </Text>
@@ -300,14 +305,7 @@ export default class Main extends React.Component {
         />
 
         <Text />
-        <Icon
-          raised
-          name='user'
-          type='feather'
-          color='#f50'
-          onPress={() => {
-            this.props.navigation.navigate("Profile");
-          }} />
+
 
         <TouchableOpacity style={[styles.bubble, styles.button]}>
           <Text style={styles.bottomBarContent}>
@@ -315,7 +313,15 @@ export default class Main extends React.Component {
           </Text>
 
         </TouchableOpacity>
-
+        <Text />
+        <Icon
+          reverse
+          name='user'
+          type='feather'
+          color='#f50'
+          onPress={() => {
+            this.props.navigation.navigate("Profile");
+          }} />
 
       </View>
     );

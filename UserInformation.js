@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, StatusBar, TextInput, Text, Button } from 'react-native';
 import styles1 from "./Styles/LaunchScreenStyles";
 import firebase from "react-native-firebase";
+import { Icon } from 'react-native-elements'
 
 class FloatingLabelInput extends Component {
     state = {
@@ -20,8 +21,12 @@ class FloatingLabelInput extends Component {
             top: !isFocused ? 0 : 0,
             fontSize: !isFocused ? 20 : 14,
             color: !isFocused ? '#aaa' : '#000',
+
+
         };
         return (
+
+
             <View style={{ paddingTop: 18 }}>
                 <Text style={labelStyleEmail}>
                     {label}
@@ -42,6 +47,8 @@ class FloatingLabelInput extends Component {
 
 
 export default class App extends Component {
+
+
     state = {
 
         email: "amadou@gmail.com",
@@ -51,7 +58,19 @@ export default class App extends Component {
         age: "22",
         headsetSerialNumber: "123456",
         isFocused: false,
-        errorMessage: null
+        errorMessage: null,
+
+        headsetSerialNumber: "123456",
+        SpeedValue: "10",
+        DistanceCalculated: "20",
+        CaloriesBurnedCalculated: "15",
+        Time: "17",
+        Inclination: "35",
+        SpeedTF: true,
+        DistanceCoveredTF: true,
+        CaloriesBurnedTF: true,
+        TimeTF: true,
+        InclinationTF: true
     };
 
     handleSubmit = () => {
@@ -77,11 +96,36 @@ export default class App extends Component {
             });
     }
 
+    Test = () => {
+        console.log("Entering Test " + firebase.auth().currentUser.uid)
+        firebase.database().ref('Users/' + firebase.auth().currentUser.uid).once('value', function (snapshot) {
+            console.log("Val " + snapshot.val())
+        });
+    }
+
+    /*
+        Test = () => {
+            console.log("Entering Test " + firebase.auth().currentUser.uid)
+            firebase.database().ref('Users/' + firebase.auth().currentUser.uid).once('value', function (snapshot) {
+                console.log("Val " + snapshot.val())
+            });
+        }
+    
+        readUserData() {
+            console.log("Entering Readuser data " + firebase.auth().currentUser.uid)
+            firebase.database().ref('Users/' + firebase.auth().currentUser.uid).once('value', function (snapshot) {
+                console.log(snapshot.val())
+            });
+        }
+        */
+
+
 
     handleEmailChange = (newText) => this.setState({ email: newText });
 
     render() {
         return (
+
             <View style={{ flex: 1, padding: 30, backgroundColor: '#f5fcff' }}>
                 <StatusBar hidden />
                 <FloatingLabelInput
@@ -132,7 +176,19 @@ export default class App extends Component {
                     title="Submit"
                     onPress={this.handleSubmit}
                 />
+
+                <Icon
+                    reverse
+                    name='home'
+                    type='feather'
+                    color='#f50'
+                    onPress={() => {
+                        this.props.navigation.navigate("Main");
+                    }} />
+
+
             </View>
+
         );
     }
 }

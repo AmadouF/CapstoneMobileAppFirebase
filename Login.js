@@ -11,6 +11,8 @@ import {
 import firebase from "react-native-firebase";
 import { Images } from "./Themes";
 import styles from "./Styles/LaunchScreenStyles";
+import { Icon } from 'react-native-elements'
+
 
 export default class Login extends React.Component {
   state = { email: "", password: "", errorMessage: null };
@@ -64,6 +66,16 @@ export default class Login extends React.Component {
             buttonStyle={styles.buttonContainer}
             containerStyle={{ marginTop: 20 }}
           />
+
+          <Text />
+          <Icon
+            reverse
+            name='user'
+            type='feather'
+            color='#f50'
+            onPress={() => {
+              this.props.navigation.navigate("SignUp");
+            }} />
         </ScrollView>
       </View>
     );
